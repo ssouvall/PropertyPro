@@ -2,9 +2,8 @@ using Core.Entities.Enums;
 
 namespace Core.Entities
 {
-    public class Property
+    public class Property : BaseEntity
     {
-        public int Id { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }
         public string City { get; set; }

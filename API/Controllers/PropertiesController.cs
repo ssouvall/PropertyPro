@@ -1,4 +1,6 @@
 using Core.Entities;
+using Core.Interfaces;
+using Core.Specifications;
 using Infrastructure.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -9,16 +11,17 @@ namespace API.Controllers
     [Route("api/[controller]")]
     public class PropertiesController : ControllerBase
     {
-        private readonly DataContext _context;
-        public PropertiesController(DataContext context)
+        private IGenericRepository<Property> _propertiesRepo;
+        public PropertiesController(IGenericRepository<Property> propertiesRepo)
         {
-            _context = context;
+            _propertiesRepo = propertiesRepo;
         }
 
         [HttpGet]
         public async Task<ActionResult<List<Property>>> GetProperties()
         {
-            var properties = await _context.Properties.ToListAsync();
+            var spec = new PropertiesWithTypesSpecification();
+            var properties = await _propertiesRepo.ListAsync(spec);
 
             return Ok(properties);
         }
@@ -26,7 +29,8 @@ namespace API.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Property>> GetProperty(int id)
         {
-            return Ok(await _context.Properties.FindAsync(id));
+            var spec = new PropertiesWithTypesSpecification(id);
+            return Ok(await _propertiesRepo.GetEntityWithSpec(spec));
         }
     }
 }
