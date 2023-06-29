@@ -4,7 +4,7 @@
         "EinNumber": "EIN001",
         "Address": "123 Main St",
         "City": "City 1",
-        "State": "1",
+        "State": 1,
         "Zip": "12345"
     },
     {
@@ -12,7 +12,7 @@
         "EinNumber": "EIN002",
         "Address": "321 Maple Ave",
         "City": "City 4",
-        "State": "4",
+        "State": 2,
         "Zip": "54321"
     },
     {
@@ -20,7 +20,7 @@
         "EinNumber": "EIN003",
         "Address": "321 Maple Ave",
         "City": "City 3",
-        "State": "3",
+        "State": 3,
         "Zip": "67891"
     },
     {
@@ -28,7 +28,7 @@
         "EinNumber": "EIN004",
         "Address": "321 Maple Ave",
         "City": "City 4",
-        "State": "10",
+        "State": 4,
         "Zip": "15476"
     }
 ]
