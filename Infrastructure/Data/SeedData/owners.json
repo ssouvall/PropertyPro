@@ -1,0 +1,34 @@
+[
+    {
+        "FirstName": "John",
+        "LastName": "Doe",
+        "Address": "123 Main St",
+        "City": "City 1",
+        "State": "State 1",
+        "Zip": "12345"
+      },
+      {
+        "FirstName": "Jane",
+        "LastName": "Smith",
+        "Address": "456 Elm St",
+        "City": "City 2",
+        "State": "State 2",
+        "Zip": "67890"
+      },
+      {
+        "FirstName": "Michael",
+        "LastName": "Johnson",
+        "Address": "789 Oak St",
+        "City": "City 3",
+        "State": "State 3",
+        "Zip": "98765"
+      },
+      {
+        "FirstName": "Sarah",
+        "LastName": "Davis",
+        "Address": "321 Maple Ave",
+        "City": "City 4",
+        "State": "State 4",
+        "Zip": "54321"
+      }
+]

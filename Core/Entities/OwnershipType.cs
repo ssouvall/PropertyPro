@@ -1,6 +1,6 @@
 namespace Core.Entities
 {
-    public class PropertyOwnershipType : BaseEntity
+    public class OwnershipType : BaseEntity
     {
         public string Name { get; set; }
     }
