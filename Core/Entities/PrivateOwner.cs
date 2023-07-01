@@ -2,7 +2,7 @@ using Core.Entities.Enums;
 
 namespace Core.Entities
 {
-    public class Owner : BaseEntity
+    public class PrivateOwner : BaseEntity
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -10,6 +10,6 @@ namespace Core.Entities
         public string City { get; set; }
         public States State { get; set; }
         public string Zip { get; set; }
-        public ICollection<Property> Properties { get; } = new List<Property>();
+        public ICollection<PrivateOwnership> PrivateOwnerships { get; } = new List<PrivateOwnership>();
     }
 }

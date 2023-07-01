@@ -10,6 +10,6 @@ namespace Core.Entities
         public string City { get; set; }
         public States State { get; set; }
         public string Zip { get; set; }
-        public ICollection<Property> Properties { get; } = new List<Property>();
+        public ICollection<CompanyOwnership> CompanyOwnerships { get; } = new List<CompanyOwnership>();
     }
 }
