@@ -9,6 +9,8 @@ namespace Core.Entities
         public string City { get; set; }
         public States State { get; set; }
         public string Zip { get; set; }
+        public int? ManagementCompanyId { get; set; }
+        public ManagementCompany? ManagementCompany { get; set; }
         public int PropertyTypeId { get; set; }
         public PropertyType PropertyType { get; set; }   
         public int PropertyOwnershipStructureId { get; set; }

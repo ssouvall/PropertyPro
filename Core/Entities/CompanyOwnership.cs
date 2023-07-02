@@ -2,7 +2,7 @@ namespace Core.Entities
 {
     public class CompanyOwnership : BaseOwnership
     {
-        public int CompanyId { get; set; }
-        public Company Company { get; set; }
+        public int CompanyOwnerId { get; set; }
+        public CompanyOwner CompanyOwner { get; set; }
     }
 }
