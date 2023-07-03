@@ -42,5 +42,11 @@ namespace Infrastructure.Services
         {
             throw new NotImplementedException();
         }
+
+        public async Task<Property> GetPropertyById(int propertyId)
+        {
+            var spec = new PropertiesWithAllAttributesSpecification(propertyId);
+            return await _propertiesRepo.GetEntityWithSpec(spec);
+        }
     }
 }

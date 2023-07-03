@@ -1,9 +1,6 @@
 using Core.Entities;
 using Core.Interfaces;
-using Core.Specifications;
-using Infrastructure.Data;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
 {
@@ -11,26 +8,38 @@ namespace API.Controllers
     [Route("api/[controller]")]
     public class PropertiesController : ControllerBase
     {
-        private IGenericRepository<Property> _propertiesRepo;
-        public PropertiesController(IGenericRepository<Property> propertiesRepo)
+        private IPropertyService _propertyService;
+        public PropertiesController(IPropertyService propertyService)
         {
-            _propertiesRepo = propertiesRepo;
+            _propertyService = propertyService;
         }
 
-        [HttpGet]
-        public async Task<ActionResult<List<Property>>> GetProperties()
+        [HttpGet("propertiesByCompanyOwner/{companyOwnerId}")]
+        public async Task<ActionResult<List<Property>>> GetPropertiesByCompanyOwner(int companyOwnerId)
         {
-            var spec = new PropertiesWithTypesSpecification();
-            var properties = await _propertiesRepo.ListAsync(spec);
+            var properties = await _propertyService.GetPropertiesByCompanyOwner(companyOwnerId);
+            return Ok(properties);
+        }
 
+        [HttpGet("propertiesByPrivateOwner/{privateOwnerId}")]
+        public async Task<ActionResult<List<Property>>> GetPropertiesByPrivateOwner(int privateOwnerId)
+        {
+            var properties = await _propertyService.GetPropertiesByPrivateOwner(privateOwnerId);
+            return Ok(properties);
+        }
+
+        [HttpGet("propertiesByManagementCompany/{managementCompanyId}")]
+        public async Task<ActionResult<List<Property>>> GetPropertiesByManagementCompany(int managementCompanyId)
+        {
+            var properties = await _propertyService.GetPropertiesByManagementCompany(managementCompanyId);
             return Ok(properties);
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<Property>> GetProperty(int id)
         {
-            var spec = new PropertiesWithTypesSpecification(id);
-            return Ok(await _propertiesRepo.GetEntityWithSpec(spec));
+            var property = await _propertyService.GetPropertyById(id);
+            return Ok(property);
         }
     }
 }
