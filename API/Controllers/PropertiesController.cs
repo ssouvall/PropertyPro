@@ -52,7 +52,7 @@ namespace API.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> EditProperty(Property property)
         {
-\            return Ok(_propertyService.UpdateProperty(property));
+            return Ok(_propertyService.UpdateProperty(property));
         }
 
         [HttpDelete("{id}")]
