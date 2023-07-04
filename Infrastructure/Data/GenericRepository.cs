@@ -17,9 +17,10 @@ namespace Infrastructure.Data
             _context.Set<T>().Add(entity);
         }
 
-        public void Delete(T entity)
+        public async Task Delete(int id)
         {
-            _context.Set<T>().Remove(entity);
+            var entity = await _context.Set<T>().FindAsync(id);
+            if (entity != null) _context.Remove(entity);
         }
 
         public async Task<T> GetByIdAsync(int id)

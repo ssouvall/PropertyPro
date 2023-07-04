@@ -33,20 +33,32 @@ namespace Infrastructure.Services
             var spec = new PropertiesByPrivateOwnerIdWithAllAttributesSpecification(privateOwnerId);
             return await _propertiesRepo.ListAsync(spec);
         }
-        public Task CreatePropertyOwnershipStructure(int propertyId, PropertyOwnershipStructure propertyOwnershipStructure)
+        public async Task SavePropertyOwnershipStructure(int propertyId, PropertyOwnershipStructure propertyOwnershipStructure)
         {
-            throw new NotImplementedException();
-        }
-
-        public Task UpdatePropertyOwnershipStructure(int propertyId, PropertyOwnershipStructure propertyOwnershipStructure)
-        {
-            throw new NotImplementedException();
+            var property = await _propertiesRepo.GetByIdAsync(propertyId);
+            property.PropertyOwnershipStructure = propertyOwnershipStructure;
+            _propertiesRepo.Update(property);
         }
 
         public async Task<Property> GetPropertyById(int propertyId)
         {
             var spec = new PropertiesWithAllAttributesSpecification(propertyId);
             return await _propertiesRepo.GetEntityWithSpec(spec);
+        }
+
+        public async Task CreateProperty(Property property)
+        {
+            _propertiesRepo.Add(property);
+        }
+
+        public async Task UpdateProperty(Property property)
+        {
+           _propertiesRepo.Update(property);
+        }
+
+        public async Task DeleteProperty(int propertyId)
+        {
+            _propertiesRepo.Delete(propertyId);
         }
     }
 }

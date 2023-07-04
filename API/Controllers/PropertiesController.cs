@@ -41,5 +41,12 @@ namespace API.Controllers
             var property = await _propertyService.GetPropertyById(id);
             return Ok(property);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateProperty(Property property)
+        {
+            await _propertyService.CreateProperty(property);
+            return Ok();
+        }
     }
 }
