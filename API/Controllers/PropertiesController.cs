@@ -48,5 +48,17 @@ namespace API.Controllers
             await _propertyService.CreateProperty(property);
             return Ok();
         }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> EditProperty(Property property)
+        {
+\            return Ok(_propertyService.UpdateProperty(property));
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteProperty(int id)
+        {
+            return Ok(_propertyService.DeleteProperty(id));
+        }
     }
 }
