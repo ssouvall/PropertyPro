@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Http;
 
 namespace Core.Entities
@@ -9,6 +10,7 @@ namespace Core.Entities
         public byte[] ImageData { get; set; }
         public string ContentType { get; set; }
         public int FileSize { get; set; }
+        [NotMapped]
         public IFormFile File { get; set; }
         public int PropertyId { get; set; }
         public Property Property { get; set; }

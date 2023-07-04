@@ -4,9 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
-    [ApiController]
-    [Route("api/[controller]")]
-    public class PropertiesController : ControllerBase
+    public class PropertiesController : BaseApiController
     {
         private IPropertyService _propertyService;
         public PropertiesController(IPropertyService propertyService)
@@ -50,15 +48,18 @@ namespace API.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> EditProperty(Property property)
+        public async Task<IActionResult> EditProperty(int id, Property property)
         {
-            return Ok(_propertyService.UpdateProperty(property));
+            property.Id = id;
+            await _propertyService.UpdateProperty(property);
+            return Ok();
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteProperty(int id)
         {
-            return Ok(_propertyService.DeleteProperty(id));
+            await _propertyService.DeleteProperty(id);
+            return Ok();
         }
     }
 }

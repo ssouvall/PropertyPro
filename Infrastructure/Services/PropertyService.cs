@@ -37,7 +37,7 @@ namespace Infrastructure.Services
         {
             var property = await _propertiesRepo.GetByIdAsync(propertyId);
             property.PropertyOwnershipStructure = propertyOwnershipStructure;
-            _propertiesRepo.Update(property);
+            await _propertiesRepo.Update(property);
         }
 
         public async Task<Property> GetPropertyById(int propertyId)
@@ -48,17 +48,17 @@ namespace Infrastructure.Services
 
         public async Task CreateProperty(Property property)
         {
-            _propertiesRepo.Add(property);
+            await _propertiesRepo.Add(property);
         }
 
         public async Task UpdateProperty(Property property)
         {
-           _propertiesRepo.Update(property);
+           await _propertiesRepo.Update(property);
         }
 
         public async Task DeleteProperty(int propertyId)
         {
-            _propertiesRepo.Delete(propertyId);
+            await _propertiesRepo.Delete(propertyId);
         }
     }
 }

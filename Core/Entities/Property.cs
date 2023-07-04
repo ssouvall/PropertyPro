@@ -12,9 +12,8 @@ namespace Core.Entities
         public int? ManagementCompanyId { get; set; }
         public ManagementCompany? ManagementCompany { get; set; }
         public int PropertyTypeId { get; set; }
-        public PropertyType PropertyType { get; set; }   
-        public int PropertyOwnershipStructureId { get; set; }
-        public PropertyOwnershipStructure PropertyOwnershipStructure { get; set; }
-        public ICollection<PropertyFile> PropertyImages { get; set; } = new List<PropertyFile>();
+        public virtual PropertyType PropertyType { get; set; }   
+        public virtual PropertyOwnershipStructure PropertyOwnershipStructure { get; set; }
+        public virtual ICollection<PropertyFile> PropertyImages { get; set; } = new List<PropertyFile>();
     }
 }
