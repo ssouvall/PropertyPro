@@ -13,6 +13,6 @@ namespace Core.Entities
         [NotMapped]
         public IFormFile File { get; set; }
         public int PropertyId { get; set; }
-        public Property Property { get; set; }
+        public virtual Property Property { get; set; }
     }
 }

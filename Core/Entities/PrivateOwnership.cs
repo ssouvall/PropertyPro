@@ -3,6 +3,6 @@ namespace Core.Entities
     public class PrivateOwnership : BaseOwnership
     {
         public int PrivateOwnerId { get; set; }
-        public PrivateOwner PrivateOwner { get; set; }
+        public virtual PrivateOwner PrivateOwner { get; set; }
     }
 }

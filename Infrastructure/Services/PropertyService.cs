@@ -8,12 +8,9 @@ namespace Infrastructure.Services
     public class PropertyService : IPropertyService
     {
         private IGenericRepository<Property> _propertiesRepo;
-        private IGenericRepository<PropertyOwnershipStructure> _propertyOwnershipStructureRepo;
-        public PropertyService(IGenericRepository<Property> propertiesRepo,
-            IGenericRepository<PropertyOwnershipStructure> propertyOwnershipStructureRepo)
+        public PropertyService(IGenericRepository<Property> propertiesRepo)
         {
             _propertiesRepo = propertiesRepo;
-            _propertyOwnershipStructureRepo = propertyOwnershipStructureRepo;
         }
 
         public async Task<IReadOnlyList<Property>> GetPropertiesByCompanyOwner(int companyOwnerId)
@@ -32,12 +29,6 @@ namespace Infrastructure.Services
         {
             var spec = new PropertiesByPrivateOwnerIdWithAllAttributesSpecification(privateOwnerId);
             return await _propertiesRepo.ListAsync(spec);
-        }
-        public async Task SavePropertyOwnershipStructure(int propertyId, PropertyOwnershipStructure propertyOwnershipStructure)
-        {
-            var property = await _propertiesRepo.GetByIdAsync(propertyId);
-            property.PropertyOwnershipStructure = propertyOwnershipStructure;
-            await _propertiesRepo.Update(property);
         }
 
         public async Task<Property> GetPropertyById(int propertyId)

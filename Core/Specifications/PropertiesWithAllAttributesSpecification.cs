@@ -7,16 +7,16 @@ namespace Core.Specifications
         public PropertiesWithAllAttributesSpecification()
         {
             AddInclude(x => x.ManagementCompany);
-            AddInclude(x => x.PropertyOwnershipStructure);
-            AddInclude(x => x.PropertyType);
+            AddInclude(x => x.CompanyOwnerships);
+            AddInclude(x => x.PrivateOwnerships);
         }
 
         public PropertiesWithAllAttributesSpecification(int id)
             : base(x => x.Id == id)
         {
             AddInclude(x => x.ManagementCompany);
-            AddInclude(x => x.PropertyOwnershipStructure);
-            AddInclude(x => x.PropertyType);
+            AddInclude(x => x.CompanyOwnerships);
+            AddInclude(x => x.PrivateOwnerships);
         }
     }
 }

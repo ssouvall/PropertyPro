@@ -1,0 +1,47 @@
+[
+    {
+        "Name": "Property 1",
+        "Address": "1234 House Street",
+        "City": "Salt Lake City",
+        "State": 44,
+        "Zip": "84123",
+        "PropertyType": 0,
+        "ManagementCompanyId": 1
+    },
+    {
+        "Name": "Property 5",
+        "Address": "5678 House Street",
+        "City": "Salt Lake City",
+        "State": 44,
+        "Zip": "84123",
+        "PropertyType": 1,
+        "ManagementCompanyId": 1
+    },
+    {
+        "Name": "Property 3",
+        "Address": "6543 Casa Street",
+        "City": "Salt Lake City",
+        "State": 44,
+        "Zip": "84111",
+        "PropertyType": 0,
+        "ManagementCompanyId": 2
+    },
+    {
+        "Name": "Property 4",
+        "Address": "1111 Haus Street",
+        "City": "Salt Lake City",
+        "State": 44,
+        "Zip": "84105",
+        "PropertyType": 0,
+        "ManagementCompanyId": 2
+    },
+    {
+        "Name": "Property 5",
+        "Address": "2222 GoodTimes Street",
+        "City": "Salt Lake City",
+        "State": 44,
+        "Zip": "84123",
+        "PropertyType": 0,
+        "ManagementCompanyId": 1
+    }
+]

@@ -1,0 +1,42 @@
+[   
+    {
+        "Name": "Company 1",
+        "EinNumber": "1a2b4c6b",
+        "Address": "1234 House Street",
+        "City": "Salt Lake City",
+        "State": 44,
+        "Zip": "84123"
+    },
+    {
+        "Name": "Company 2",
+        "EinNumber": "6t52j45sdf",
+        "Address": "1234 Company Street",
+        "City": "Salt Lake City",
+        "State": 44,
+        "Zip": "84111"
+    },
+    {
+        "Name": "Company 3",
+        "EinNumber": "115544gsft55",
+        "Address": "5678 Company Street",
+        "City": "Salt Lake City",
+        "State": 44,
+        "Zip": "84111"
+    },
+    {
+        "Name": "Company 4",
+        "EinNumber": "8v8d3451",
+        "Address": "1234 Manufacturing Street",
+        "City": "Salt Lake City",
+        "State": 44,
+        "Zip": "84111"
+    },
+    {
+        "Name": "Company 5",
+        "EinNumber": "9v9b84b6sg",
+        "Address": "1234 Cool Street",
+        "City": "Salt Lake City",
+        "State": 44,
+        "Zip": "84111"
+    }
+]

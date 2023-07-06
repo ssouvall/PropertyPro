@@ -1,4 +1,3 @@
-using System.Reflection;
 using Core.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -16,8 +15,6 @@ namespace Infrastructure.Data
         public DbSet<CompanyOwnership> CompanyOwnerships { get; set; }
         public DbSet<PrivateOwnership> PrivateOwnerships { get; set; }
         public DbSet<ManagementCompany> ManagementCompanies { get; set; }
-        public DbSet<PropertyOwnershipStructure> PropertyOwnershipStructures { get; set; }
-        public DbSet<PropertyType> PropertyTypes { get; set; }
         public DbSet<PropertyFile> PropertyFiles { get; set; }
     }
 }

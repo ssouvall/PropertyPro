@@ -2,6 +2,6 @@ namespace Core.Entities
 {
     public class CompanyOwner : Company
     {
-        public ICollection<CompanyOwnership> CompanyOwnerships { get; } = new List<CompanyOwnership>();
+        public virtual ICollection<CompanyOwnership> CompanyOwnerships { get; } = new List<CompanyOwnership>();
     }
 }

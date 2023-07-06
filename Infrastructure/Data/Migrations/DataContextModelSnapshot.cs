@@ -63,14 +63,14 @@ namespace Infrastructure.Data.Migrations
                     b.Property<int>("PercentOwnership")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("PropertyOwnershipStructureId")
+                    b.Property<int>("PropertyId")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
                     b.HasIndex("CompanyOwnerId");
 
-                    b.HasIndex("PropertyOwnershipStructureId");
+                    b.HasIndex("PropertyId");
 
                     b.ToTable("CompanyOwnerships");
                 });
@@ -155,14 +155,14 @@ namespace Infrastructure.Data.Migrations
                     b.Property<int>("PrivateOwnerId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("PropertyOwnershipStructureId")
+                    b.Property<int>("PropertyId")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
                     b.HasIndex("PrivateOwnerId");
 
-                    b.HasIndex("PropertyOwnershipStructureId");
+                    b.HasIndex("PropertyId");
 
                     b.ToTable("PrivateOwnerships");
                 });
@@ -188,7 +188,7 @@ namespace Infrastructure.Data.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("PropertyTypeId")
+                    b.Property<int>("PropertyType")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("State")
@@ -201,8 +201,6 @@ namespace Infrastructure.Data.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("ManagementCompanyId");
-
-                    b.HasIndex("PropertyTypeId");
 
                     b.ToTable("Properties");
                 });
@@ -242,38 +240,6 @@ namespace Infrastructure.Data.Migrations
                     b.ToTable("PropertyFiles");
                 });
 
-            modelBuilder.Entity("Core.Entities.PropertyOwnershipStructure", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("PropertyId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PropertyId")
-                        .IsUnique();
-
-                    b.ToTable("PropertyOwnershipStructures");
-                });
-
-            modelBuilder.Entity("Core.Entities.PropertyType", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("PropertyTypes");
-                });
-
             modelBuilder.Entity("Core.Entities.CompanyOwnership", b =>
                 {
                     b.HasOne("Core.Entities.CompanyOwner", "CompanyOwner")
@@ -282,15 +248,15 @@ namespace Infrastructure.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Core.Entities.PropertyOwnershipStructure", "PropertyOwnershipStructure")
+                    b.HasOne("Core.Entities.Property", "Property")
                         .WithMany("CompanyOwnerships")
-                        .HasForeignKey("PropertyOwnershipStructureId")
+                        .HasForeignKey("PropertyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("CompanyOwner");
 
-                    b.Navigation("PropertyOwnershipStructure");
+                    b.Navigation("Property");
                 });
 
             modelBuilder.Entity("Core.Entities.PrivateOwnership", b =>
@@ -301,15 +267,15 @@ namespace Infrastructure.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Core.Entities.PropertyOwnershipStructure", "PropertyOwnershipStructure")
+                    b.HasOne("Core.Entities.Property", "Property")
                         .WithMany("PrivateOwnerships")
-                        .HasForeignKey("PropertyOwnershipStructureId")
+                        .HasForeignKey("PropertyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("PrivateOwner");
 
-                    b.Navigation("PropertyOwnershipStructure");
+                    b.Navigation("Property");
                 });
 
             modelBuilder.Entity("Core.Entities.Property", b =>
@@ -318,15 +284,7 @@ namespace Infrastructure.Data.Migrations
                         .WithMany("ManagedProperties")
                         .HasForeignKey("ManagementCompanyId");
 
-                    b.HasOne("Core.Entities.PropertyType", "PropertyType")
-                        .WithMany()
-                        .HasForeignKey("PropertyTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("ManagementCompany");
-
-                    b.Navigation("PropertyType");
                 });
 
             modelBuilder.Entity("Core.Entities.PropertyFile", b =>
@@ -334,17 +292,6 @@ namespace Infrastructure.Data.Migrations
                     b.HasOne("Core.Entities.Property", "Property")
                         .WithMany("PropertyImages")
                         .HasForeignKey("PropertyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Property");
-                });
-
-            modelBuilder.Entity("Core.Entities.PropertyOwnershipStructure", b =>
-                {
-                    b.HasOne("Core.Entities.Property", "Property")
-                        .WithOne("PropertyOwnershipStructure")
-                        .HasForeignKey("Core.Entities.PropertyOwnershipStructure", "PropertyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -368,17 +315,11 @@ namespace Infrastructure.Data.Migrations
 
             modelBuilder.Entity("Core.Entities.Property", b =>
                 {
-                    b.Navigation("PropertyImages");
-
-                    b.Navigation("PropertyOwnershipStructure")
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Core.Entities.PropertyOwnershipStructure", b =>
-                {
                     b.Navigation("CompanyOwnerships");
 
                     b.Navigation("PrivateOwnerships");
+
+                    b.Navigation("PropertyImages");
                 });
 #pragma warning restore 612, 618
         }

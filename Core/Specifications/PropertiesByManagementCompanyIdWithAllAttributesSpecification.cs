@@ -7,8 +7,8 @@ namespace Core.Specifications
         public PropertiesByManagementCompanyIdWithAllAttributesSpecification(int managementCompanyId)
             : base(x => x.ManagementCompanyId == managementCompanyId)
         {
-            AddInclude(x => x.PropertyOwnershipStructure);
-            AddInclude(x => x.PropertyType);
+            AddInclude(x => x.CompanyOwnerships);
+            AddInclude(x => x.PrivateOwnerships);
         }
     }
 }

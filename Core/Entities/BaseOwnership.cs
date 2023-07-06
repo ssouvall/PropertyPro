@@ -4,9 +4,8 @@ namespace Core.Entities
 {
     public class BaseOwnership : BaseEntity
     {
-        public int PropertyOwnershipStructureId { get; set; }
-        public PropertyOwnershipStructure PropertyOwnershipStructure { get; set; }
-        
+        public int PropertyId { get; set; }   
+        public virtual Property Property { get; set; }     
         private int percentOwnership;
 
         [Range(0, 100, ErrorMessage = "Percent ownership must be between 0 and 100.")]

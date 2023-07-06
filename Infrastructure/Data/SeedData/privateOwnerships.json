@@ -1,0 +1,27 @@
+[
+    {
+        "PrivateOwnerId": 1,
+        "PropertyId": 2,
+        "PercentOwnership": 25
+    },
+    {
+        "PrivateOwnerId": 2,
+        "PropertyId": 3,
+        "PercentOwnership": 20
+    },
+    {
+        "PrivateOwnerId": 3,
+        "PropertyId": 3,
+        "PercentOwnership": 50
+    },
+    {
+        "PrivateOwnerId": 4,
+        "PropertyId": 3,
+        "PercentOwnership": 20
+    },
+    {
+        "PrivateOwnerId": 5,
+        "PropertyId": 3,
+        "PercentOwnership": 10
+    }
+]
