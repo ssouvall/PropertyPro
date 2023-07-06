@@ -4,6 +4,7 @@ namespace Core.Interfaces
 {
     public interface IPropertyService
     {
+        Task<IReadOnlyList<Property>> GetProperties();
         Task<IReadOnlyList<Property>> GetPropertiesByManagementCompany(int managementCompanyId);
         Task<IReadOnlyList<Property>> GetPropertiesByCompanyOwner(int companyOwnerId);
         Task<IReadOnlyList<Property>> GetPropertiesByPrivateOwner(int privateOwnerId);

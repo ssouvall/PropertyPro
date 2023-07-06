@@ -12,6 +12,13 @@ namespace API.Controllers
             _propertyService = propertyService;
         }
 
+        [HttpGet]
+        public async Task<ActionResult<List<Property>>> GetProperties()
+        {
+            var properties = await _propertyService.GetProperties();
+            return Ok(properties);
+        }
+
         [HttpGet("propertiesByCompanyOwner/{companyOwnerId}")]
         public async Task<ActionResult<List<Property>>> GetPropertiesByCompanyOwner(int companyOwnerId)
         {

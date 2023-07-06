@@ -1,7 +1,6 @@
 using Core.Entities;
 using Core.Interfaces;
 using Core.Specifications;
-using Infrastructure.Data;
 
 namespace Infrastructure.Services
 {
@@ -50,6 +49,12 @@ namespace Infrastructure.Services
         public async Task DeleteProperty(int propertyId)
         {
             await _propertiesRepo.Delete(propertyId);
+        }
+
+        public async Task<IReadOnlyList<Property>> GetProperties()
+        {
+            var spec = new PropertiesWithAllAttributesSpecification();
+            return await _propertiesRepo.ListAsync(spec);
         }
     }
 }

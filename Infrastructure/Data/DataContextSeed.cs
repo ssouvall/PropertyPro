@@ -12,6 +12,7 @@ namespace Infrastructure.Data
                 var companyOwnersData = File.ReadAllText("../Infrastructure/Data/SeedData/companyOwners.json");
                 var owners = JsonSerializer.Deserialize<List<CompanyOwner>>(companyOwnersData);
                 context.CompanyOwners.AddRange(owners);
+                await context.SaveChangesAsync();
             }
 
             if (!context.PrivateOwners.Any())
@@ -19,6 +20,7 @@ namespace Infrastructure.Data
                 var privateOwnersData = File.ReadAllText("../Infrastructure/Data/SeedData/privateOwners.json");
                 var owners = JsonSerializer.Deserialize<List<PrivateOwner>>(privateOwnersData);
                 context.PrivateOwners.AddRange(owners);
+                await context.SaveChangesAsync();
             }
 
             if (!context.ManagementCompanies.Any())
@@ -26,36 +28,32 @@ namespace Infrastructure.Data
                 var managementCompanyData = File.ReadAllText("../Infrastructure/Data/SeedData/managementCompanies.json");
                 var managementCompanies = JsonSerializer.Deserialize<List<ManagementCompany>>(managementCompanyData);
                 context.ManagementCompanies.AddRange(managementCompanies);
+                await context.SaveChangesAsync();
             }
-
-            if (context.ChangeTracker.HasChanges()) await context.SaveChangesAsync();
 
             if (!context.Properties.Any() && context.ManagementCompanies.Any())
             {
                 var propertiesData = File.ReadAllText("../Infrastructure/Data/SeedData/properties.json");
                 var properties = JsonSerializer.Deserialize<List<Property>>(propertiesData);
                 context.Properties.AddRange(properties);
+                await context.SaveChangesAsync();
             }
-
-            if (context.ChangeTracker.HasChanges()) await context.SaveChangesAsync();
 
             if (!context.CompanyOwnerships.Any() && context.CompanyOwners.Any())
             {
                 var companyOwnershipData = File.ReadAllText("../Infrastructure/Data/SeedData/companyOwnerships.json");
                 var ownerships = JsonSerializer.Deserialize<List<CompanyOwnership>>(companyOwnershipData);
                 context.CompanyOwnerships.AddRange(ownerships);
+                await context.SaveChangesAsync();
             }
-
-            if (context.ChangeTracker.HasChanges()) await context.SaveChangesAsync();
 
             if (!context.PrivateOwnerships.Any() && context.PrivateOwners.Any())
             {
                 var privateOwnershipsData = File.ReadAllText("../Infrastructure/Data/SeedData/privateOwnerships.json");
                 var ownerships = JsonSerializer.Deserialize<List<PrivateOwnership>>(privateOwnershipsData);
                 context.PrivateOwnerships.AddRange(ownerships);
+                await context.SaveChangesAsync();
             }
-
-            if (context.ChangeTracker.HasChanges()) await context.SaveChangesAsync();
         }
     }
 }
