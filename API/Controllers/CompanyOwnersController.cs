@@ -22,7 +22,7 @@ namespace API.Controllers
         {
             var companyOwners = await _companyOwnersRepo.ListAllAsync();
             var companyOwnersToReturn = _mapper.Map<IReadOnlyList<CompanyOwner>, IReadOnlyList<CompanyOwnerDto>>(companyOwners);
-            return Ok(companyOwners);
+            return Ok(companyOwnersToReturn);
         }
 
         [HttpGet("{id}")]
@@ -30,7 +30,7 @@ namespace API.Controllers
         {
             var companyOwner = await _companyOwnersRepo.GetByIdAsync(id);
             var companyOwnerToReturn = _mapper.Map<CompanyOwner, CompanyOwnerDto>(companyOwner);
-            return Ok(companyOwner);
+            return Ok(companyOwnerToReturn);
         }
 
         [HttpPost]

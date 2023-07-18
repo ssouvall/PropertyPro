@@ -45,7 +45,7 @@ namespace API.Controllers
         {
             var properties = await _propertyService.GetPropertiesByManagementCompany(managementCompanyId);
             var propertiesToReturn = _mapper.Map<IReadOnlyList<Property>, IReadOnlyList<PropertyDto>>(properties);
-            return Ok(properties);
+            return Ok(propertiesToReturn);
         }
 
         [HttpGet("{id}")]
