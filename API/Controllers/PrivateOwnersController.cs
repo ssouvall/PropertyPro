@@ -1,3 +1,5 @@
+using API.Dtos;
+using AutoMapper;
 using Core.Entities;
 using Core.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -7,23 +9,27 @@ namespace API.Controllers
     public class PrivateOwnersController : BaseApiController
     {
         private IGenericRepository<PrivateOwner> _privateOwnersRepo;
-        public PrivateOwnersController(IGenericRepository<PrivateOwner> privateOwnersRepo)
+        private IMapper _mapper;
+        public PrivateOwnersController(IGenericRepository<PrivateOwner> privateOwnersRepo, IMapper mapper)
         {
             _privateOwnersRepo = privateOwnersRepo;
+            _mapper = mapper;
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<PrivateOwner>>> GetPrivateOwners()
+        public async Task<ActionResult<IReadOnlyList<PrivateOwnerDto>>> GetPrivateOwners()
         {
             var privateOwners = await _privateOwnersRepo.ListAllAsync();
-            return Ok(privateOwners);
+            var privateOwnersToReturn = _mapper.Map<IReadOnlyList<PrivateOwner>, IReadOnlyList<PrivateOwnerDto>>(privateOwners);
+            return Ok(privateOwnersToReturn);
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<PrivateOwner>> GetPrivateOwnerById(int id)
+        public async Task<ActionResult<PrivateOwnerDto>> GetPrivateOwnerById(int id)
         {
             var privateOwner = await _privateOwnersRepo.GetByIdAsync(id);
-            return Ok(privateOwner);
+            var privateOwnerToReturn = _mapper.Map<PrivateOwner, PrivateOwnerDto>(privateOwner);
+            return Ok(privateOwnerToReturn);
         }
 
         [HttpPost]

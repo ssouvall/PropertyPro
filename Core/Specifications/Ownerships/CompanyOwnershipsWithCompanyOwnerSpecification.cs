@@ -8,12 +8,14 @@ namespace Core.Specifications.Ownerships
         public CompanyOwnershipsWithCompanyOwnerSpecification()
         {
             AddInclude(x => x.CompanyOwner);
+            AddInclude(x => x.Property);
         }
 
         public CompanyOwnershipsWithCompanyOwnerSpecification(int id) 
             : base(x => x.Id == id)
         {
             AddInclude(x => x.CompanyOwner);
+            AddInclude(x => x.Property);
         }
     }
 }

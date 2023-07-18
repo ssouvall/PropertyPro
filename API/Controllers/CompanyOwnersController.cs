@@ -1,3 +1,5 @@
+using API.Dtos;
+using AutoMapper;
 using Core.Entities;
 using Core.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -7,22 +9,27 @@ namespace API.Controllers
     public class CompanyOwnersController : BaseApiController
     {
         private IGenericRepository<CompanyOwner> _companyOwnersRepo;
-        public CompanyOwnersController(IGenericRepository<CompanyOwner> companyOwnersRepo)
+        private IMapper _mapper;
+        public CompanyOwnersController(IGenericRepository<CompanyOwner> companyOwnersRepo,
+            IMapper mapper)
         {
             _companyOwnersRepo = companyOwnersRepo;
+            _mapper = mapper;
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<CompanyOwner>>> GetCompanyOwners()
+        public async Task<ActionResult<IReadOnlyList<CompanyOwnerDto>>> GetCompanyOwners()
         {
             var companyOwners = await _companyOwnersRepo.ListAllAsync();
+            var companyOwnersToReturn = _mapper.Map<IReadOnlyList<CompanyOwner>, IReadOnlyList<CompanyOwnerDto>>(companyOwners);
             return Ok(companyOwners);
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<CompanyOwner>> GetCompanyOwnerById(int id)
+        public async Task<ActionResult<CompanyOwnerDto>> GetCompanyOwnerById(int id)
         {
             var companyOwner = await _companyOwnersRepo.GetByIdAsync(id);
+            var companyOwnerToReturn = _mapper.Map<CompanyOwner, CompanyOwnerDto>(companyOwner);
             return Ok(companyOwner);
         }
 

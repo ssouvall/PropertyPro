@@ -1,29 +1,35 @@
+using API.Dtos;
 using Core.Entities;
 using Core.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using AutoMapper;
 
 namespace API.Controllers
 {
     public class CompanyOwnershipsController : BaseApiController
     {
+        private IMapper _mapper;
         private IGenericRepository<CompanyOwnership> _companyOwnershipsRepo;
-        public CompanyOwnershipsController(IGenericRepository<CompanyOwnership> companyOwnershipsRepo)
+        public CompanyOwnershipsController(IGenericRepository<CompanyOwnership> companyOwnershipsRepo, IMapper mapper)
         {
             _companyOwnershipsRepo = companyOwnershipsRepo;
+            _mapper = mapper;
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<CompanyOwner>>> GetCompanyOwnerships()
+        public async Task<ActionResult<IReadOnlyList<CompanyOwnershipDto>>> GetCompanyOwnerships()
         {
             var companyOwnerships = await _companyOwnershipsRepo.ListAllAsync();
-            return Ok(companyOwnerships);
+            var companyOwnershipsToReturn = _mapper.Map<IReadOnlyList<CompanyOwnership>, IReadOnlyList<CompanyOwnershipDto>>(companyOwnerships);
+            return Ok(companyOwnershipsToReturn);
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<CompanyOwner>> GetCompanyOwnerShipById(int id)
+        public async Task<ActionResult<CompanyOwnershipDto>> GetCompanyOwnerShipById(int id)
         {
             var companyOwnership = await _companyOwnershipsRepo.GetByIdAsync(id);
-            return Ok(companyOwnership);
+            var companyOwnershipToReturn = _mapper.Map<CompanyOwnership, CompanyOwnershipDto>(companyOwnership);
+            return Ok(companyOwnershipToReturn);
         }
 
         [HttpPost]

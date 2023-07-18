@@ -9,5 +9,6 @@ namespace API.Dtos
         public string City { get; set; }
         public string State { get; set; }
         public string Zip { get; set; }      
+        public IReadOnlyList<CompanyOwnershipDto> CompanyOwnerships { get; set; }
     }
 }

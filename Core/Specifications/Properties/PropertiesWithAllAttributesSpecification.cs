@@ -1,3 +1,4 @@
+using System.Linq.Expressions;
 using Core.Entities;
 
 namespace Core.Specifications
@@ -7,8 +8,9 @@ namespace Core.Specifications
         public PropertiesWithAllAttributesSpecification()
         {
             AddInclude(x => x.ManagementCompany);
-            AddInclude(x => x.CompanyOwnerships);
             AddInclude(x => x.PrivateOwnerships);
+            AddInclude(x => x.CompanyOwnerships);
+            AddInclude($"{nameof(Property.CompanyOwnerships)}.{nameof(CompanyOwnership.CompanyOwner)}");
         }
 
         public PropertiesWithAllAttributesSpecification(int id)
@@ -16,6 +18,7 @@ namespace Core.Specifications
         {
             AddInclude(x => x.ManagementCompany);
             AddInclude(x => x.CompanyOwnerships);
+            AddInclude($"{nameof(Property.CompanyOwnerships)}.{nameof(CompanyOwnership.CompanyOwner)}");
             AddInclude(x => x.PrivateOwnerships);
         }
     }

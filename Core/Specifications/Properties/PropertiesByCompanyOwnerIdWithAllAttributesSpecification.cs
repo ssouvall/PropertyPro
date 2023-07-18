@@ -10,6 +10,7 @@ namespace Core.Specifications
         {
             AddInclude(x => x.ManagementCompany);
             AddInclude(x => x.CompanyOwnerships);
+            AddInclude("CompanyOwnership.CompanyOwner");
             AddInclude(x => x.PrivateOwnerships);
         }
     }
