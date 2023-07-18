@@ -1,3 +1,5 @@
+using API.Dtos;
+using AutoMapper;
 using Core.Entities;
 using Core.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -7,44 +9,51 @@ namespace API.Controllers
     public class PropertiesController : BaseApiController
     {
         private IPropertyService _propertyService;
-        public PropertiesController(IPropertyService propertyService)
+        private IMapper _mapper;
+        public PropertiesController(IPropertyService propertyService, IMapper mapper)
         {
             _propertyService = propertyService;
+            _mapper = mapper;
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<Property>>> GetProperties()
+        public async Task<ActionResult<IReadOnlyList<PropertyDto>>> GetProperties()
         {
             var properties = await _propertyService.GetProperties();
-            return Ok(properties);
+            var propertiesToReturn = _mapper.Map<IReadOnlyList<Property>, IReadOnlyList<PropertyDto>>(properties);
+            return Ok(propertiesToReturn);
         }
 
         [HttpGet("propertiesByCompanyOwner/{companyOwnerId}")]
         public async Task<ActionResult<List<Property>>> GetPropertiesByCompanyOwner(int companyOwnerId)
         {
             var properties = await _propertyService.GetPropertiesByCompanyOwner(companyOwnerId);
-            return Ok(properties);
+            var propertiesToReturn = _mapper.Map<IReadOnlyList<Property>, IReadOnlyList<PropertyDto>>(properties);
+            return Ok(propertiesToReturn);
         }
 
         [HttpGet("propertiesByPrivateOwner/{privateOwnerId}")]
         public async Task<ActionResult<List<Property>>> GetPropertiesByPrivateOwner(int privateOwnerId)
         {
             var properties = await _propertyService.GetPropertiesByPrivateOwner(privateOwnerId);
-            return Ok(properties);
+            var propertiesToReturn = _mapper.Map<IReadOnlyList<Property>, IReadOnlyList<PropertyDto>>(properties);
+            return Ok(propertiesToReturn);
         }
 
         [HttpGet("propertiesByManagementCompany/{managementCompanyId}")]
         public async Task<ActionResult<List<Property>>> GetPropertiesByManagementCompany(int managementCompanyId)
         {
             var properties = await _propertyService.GetPropertiesByManagementCompany(managementCompanyId);
-            return Ok(properties);
+            var propertiesToReturn = _mapper.Map<IReadOnlyList<Property>, IReadOnlyList<PropertyDto>>(properties);
+            return Ok(propertiesToReturn);
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<Property>> GetProperty(int id)
         {
             var property = await _propertyService.GetPropertyById(id);
-            return Ok(property);
+            var propertyToReturn = _mapper.Map<Property, PropertyDto>(property);
+            return Ok(propertyToReturn);
         }
 
         [HttpPost]

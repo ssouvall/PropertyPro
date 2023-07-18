@@ -1,8 +1,9 @@
 using System.Linq.Expressions;
+using Core.Entities;
 
 namespace Core.Specifications
 {
-public class BaseSpecification<T> : ISpecification<T>
+    public class BaseSpecification<T> : ISpecification<T>
     {
         public BaseSpecification()
         {
@@ -20,6 +21,9 @@ public class BaseSpecification<T> : ISpecification<T>
 
         public List<string> IncludeStrings { get; } = new List<string>();
 
+        public List<ChainedQueryEntity<T>> ChainedQueries {get; } = 
+        new List<ChainedQueryEntity<T>>();
+
         protected void AddInclude(Expression<Func<T, object>> includeExpression)
         {
             Includes.Add(includeExpression);
@@ -28,6 +32,16 @@ public class BaseSpecification<T> : ISpecification<T>
         protected void AddInclude(string includeString)
         {
             IncludeStrings.Add(includeString);
+        }
+
+        protected void AddInclude(Expression<Func<T, object>> includeExpression,
+        List<QueryExpressionContainer> thenIncludesExpressions)
+        {
+            ChainedQueries.Add(new ChainedQueryEntity<T>
+            {
+                Includes = includeExpression,
+                ThenIncludes = thenIncludesExpressions
+            });
         }
     }
 }

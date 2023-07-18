@@ -7,12 +7,14 @@ namespace Core.Specifications.Ownerships
         public PrivateOwnershipsWithPrivateOwnersSpecification()
         {
             AddInclude(x => x.PrivateOwner);
+            AddInclude(x => x.Property);
         }
 
         public PrivateOwnershipsWithPrivateOwnersSpecification(int id) 
             : base(x => x.Id == id)
         {
             AddInclude(x => x.PrivateOwner);
+            AddInclude(x => x.Property);
         }
     }
 }

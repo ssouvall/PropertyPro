@@ -9,8 +9,10 @@ namespace API.Dtos
         public string State { get; set; }
         public string Zip { get; set; }
         public string PropertyType { get; set; }
-        public ManagementCompanyDto ManagementCompany { get; set; }
+        public int ManagementCompanyId { get; set; }
+        public string ManagementCompanyName { get; set; }
         public IReadOnlyList<PropertyFileDto> PropertyImages { get; set; }
         public IReadOnlyList<CompanyOwnershipDto> CompanyOwnerships { get; set; }
+        public IReadOnlyList<PrivateOwnershipDto> PrivateOwnerships { get; set; }
     }
 }
